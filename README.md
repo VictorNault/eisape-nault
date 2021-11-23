@@ -5,3 +5,7 @@ Victor and Seun: 11-18-21 (1 hour)
 - Uploaded drought dataset to google drive because it was over 300 mb and github will not accept files over 25 mb
 - Made Github repositiory
 - Downloaded median income by county dataset as .csv, and found that it only had median income data for 2019, crisis ensued
+
+Victor and Seun: 11-23-21 (2 hours)
+- Downloaded drought dataset containing only DSCI data
+- crated functions to locate a single county than create list of DSCI values and graphed them
