@@ -4,6 +4,7 @@ import numpy
 import csv
 import pandas
 import matplotlib.pyplot as pyplot
+from DsciDataset import *
 
 def main():
     drought_data_frame = read_in_data()
@@ -42,10 +43,13 @@ def create_county_plot(county_data_frame):
         dsci_by_week[reverse_counter - i - 1] = county_data_frame["DSCI"].iloc[i]
         #print(county_data_frame[reverse_counter - i - 1])
     #print(dsci_by_week)
-    create_linear_prediction_plot(dsci_by_week, int(len(dsci_by_week) / 2))
+    #create_linear_prediction_plot(dsci_by_week, int(len(dsci_by_week) / 2))
+    test_dsci_dataset = DsciDataset(dsci_by_week, int(len(dsci_by_week) / 2))
+    test_dsci_dataset.show_prediction_plot()
     #pyplot.plot(dsci_by_week)
     #pyplot.show()
 
+'''
 def create_linear_prediction_plot(dsci_list, week_boundary):
     """
     Creates a plot of the actual dsci data, as well as a linear approximation
@@ -114,6 +118,8 @@ def add_ones_column_to_axis_0(input_array):
     output_array = numpy.concatenate(((numpy.ones((midput_array.shape[0], 1)), \
     midput_array)), axis=1)
     return output_array
+
+'''
 
 if __name__ == "__main__":
     main()
