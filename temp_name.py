@@ -9,30 +9,46 @@ from DsciDataset import *
 def main():
     drought_data_frame = read_in_data()
     de_test = process_data(drought_data_frame)
-    de_kent_dsci = create_dsci_list(de_test["Kent County"])
-    de_sussex_dsci = create_dsci_list(de_test["Sussex County"])
-    de_new_castle_dsci = create_dsci_list(de_test["New Castle County"])
-    de_kent_dsci_dataset = DsciDataset(de_kent_dsci, int(len(de_kent_dsci) / 2))
-    de_kent_dsci_dataset.show_prediction_plot()
+    print(de_test)
+    #de_kent_dsci = create_dsci_list(de_test["Kent County"])
+    #de_sussex_dsci = create_dsci_list(de_test["Sussex County"])
+    #de_new_castle_dsci = create_dsci_list(de_test["New Castle County"])
+    #de_kent_dsci_dataset = DsciDataset(de_kent_dsci, int(len(de_kent_dsci) / 2))
+    #de_kent_dsci_dataset.show_prediction_plot()
 
 def read_in_data():
     return pandas.read_csv("county_drought_data_2000-2021_dsci.csv", header=0)
 
 
 def process_data(input_df):
-    de_data_frame = input_df[input_df["State"].isin(["DE"])]
+    """
+    This function reads over the State and county columns within the DSCI
+    drought data set and creates a dictionary holding each time a county appears 
+
+    input_df: drought datatset
+    return: dictionary with keys representing each county and values being each
+    instance that county appears
+    """
+    #data_frame = input_df[input_df["State"].isin(["DE"])]
     #print(de_data_frame)
+    county_data_frame = input_df[["State", "County"]]
 
-    de_county_data_frame = (de_data_frame["County"])
-    de_county_df_no_dupes = de_county_data_frame.drop_duplicates()
+    county_df_no_dupes = county_data_frame.drop_duplicates()
     #print(de_county_df_no_dupes)
+    #print(county_df_no_dupes)
+    all_county_dict = {}
+    for i in range(len(county_df_no_dupes)):
+        #county_df_no_dupes.iloc[i]
+        this_row = county_df_no_dupes.iloc[i]
+        this_county = this_row["County"]
+        this_state = this_row["State"]
+        key_name = this_state + " " + this_county
+        #print(key_name)
+        all_county_dict[key_name] = input_df[input_df[["State","County"]].isin([this_state, this_county])]
 
-    de_county_dict = {}
-    for county in de_county_df_no_dupes:
-        de_county_dict[county]= de_data_frame[de_data_frame["County"].isin([county])]
     #print(de_county_dict)\
 
-    return de_county_dict
+    return all_county_dict
 
 
 def create_dsci_list(county_data_frame):
