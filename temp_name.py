@@ -23,7 +23,7 @@ def read_in_data():
 def process_data(input_df):
     """
     This function reads over the State and county columns within the DSCI
-    drought data set and creates a dictionary holding each time a county appears 
+    drought data set and creates a dictionary holding each time a county appears
 
     input_df: drought datatset
     return: dictionary with keys representing each county and values being each
@@ -38,13 +38,14 @@ def process_data(input_df):
     #print(county_df_no_dupes)
     all_county_dict = {}
     for i in range(len(county_df_no_dupes)):
-        #county_df_no_dupes.iloc[i]
         this_row = county_df_no_dupes.iloc[i]
         this_county = this_row["County"]
         this_state = this_row["State"]
         key_name = this_state + " " + this_county
-        #print(key_name)
-        all_county_dict[key_name] = input_df[input_df[["State","County"]].isin([this_state, this_county])]
+        state_df = input_df[input_df["State"].isin([this_state])]
+        all_county_dict[key_name] = state_df[state_df["County"].isin([this_county])]
+
+        print(all_county_dict[key_name])
 
     #print(de_county_dict)\
 
