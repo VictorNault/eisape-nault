@@ -9,10 +9,11 @@ from DsciDataset import *
 def main():
     drought_data_frame = read_in_data()
     de_test = process_data(drought_data_frame)
-    create_county_plot(de_test["Kent County"])
-    create_county_plot(de_test["Sussex County"])
-    create_county_plot(de_test["New Castle County"])
-
+    de_kent_dsci = create_dsci_list(de_test["Kent County"])
+    de_sussex_dsci = create_dsci_list(de_test["Sussex County"])
+    de_new_castle_dsci = create_dsci_list(de_test["New Castle County"])
+    de_kent_dsci_dataset = DsciDataset(de_kent_dsci, int(len(de_kent_dsci) / 2))
+    de_kent_dsci_dataset.show_prediction_plot()
 
 def read_in_data():
     return pandas.read_csv("county_drought_data_2000-2021_dsci.csv", header=0)
@@ -34,20 +35,12 @@ def process_data(input_df):
     return de_county_dict
 
 
-def create_county_plot(county_data_frame):
+def create_dsci_list(county_data_frame):
     dsci_by_week = len(county_data_frame) * [0]
     reverse_counter = len(county_data_frame)
-    #print(county_data_frame)
-
     for i in range(len((county_data_frame))):
         dsci_by_week[reverse_counter - i - 1] = county_data_frame["DSCI"].iloc[i]
-        #print(county_data_frame[reverse_counter - i - 1])
-    #print(dsci_by_week)
-    #create_linear_prediction_plot(dsci_by_week, int(len(dsci_by_week) / 2))
-    test_dsci_dataset = DsciDataset(dsci_by_week, int(len(dsci_by_week) / 2))
-    test_dsci_dataset.show_prediction_plot()
-    #pyplot.plot(dsci_by_week)
-    #pyplot.show()
+    return dsci_by_week
 
 '''
 def create_linear_prediction_plot(dsci_list, week_boundary):
