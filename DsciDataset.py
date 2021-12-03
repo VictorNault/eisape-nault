@@ -6,16 +6,14 @@ import matplotlib.pyplot as pyplot
 
 class DsciDataset:
 
-    def __init__(self, input_dsci_list, input_boundary_week, region_name):
+    def __init__(self, input_dsci_list, input_boundary_week):
         self.real_dsci_list = input_dsci_list
         self.boundary_week = input_boundary_week
-        self.region_name = region_name
         self.train_dsci_list = self.real_dsci_list[:self.boundary_week]
         self.test_dsci_list = self.real_dsci_list[self.boundary_week:]
-        self.pred_dsci_list = self.create_lin_pred_dsci_list(self.train_dsci_list)
-        self.full_pred_dsci_list = self.create_lin_pred_dsci_list(self.real_dsci_list)
+        self.pred_dsci_list = self.create_lin_pred_dsci_list()
 
-    def create_lin_pred_dsci_list(self, dsci_list):
+    def create_lin_pred_dsci_list(self):
         """
         Creates a plot of the actual dsci data, as well as a linear
         approximation of the dsci data BEFORE the week boundary, but extended
@@ -25,9 +23,9 @@ class DsciDataset:
                     week_boundary - The week at which to separate the dsci list
                     into testing and training data.
         """
-        dsci_X = numpy.array(range(len(dsci_list)))
+        dsci_X = numpy.array(range(len(self.train_dsci_list)))
         dsci_X_with_ones = self.add_ones_column_to_axis_0(dsci_X)
-        predicted_dsci_weights = self.fit(dsci_X_with_ones, dsci_list)
+        predicted_dsci_weights = self.fit(dsci_X_with_ones, self.train_dsci_list)
         predicted_dsci = []
         # For a linear model: y-hat at every x is equal to w0 + (w1 * x)
         for i in range(len(self.real_dsci_list)):
@@ -36,14 +34,8 @@ class DsciDataset:
         return predicted_dsci
 
     def show_prediction_plot(self):
-        pyplot.title(f"Real DSCI Over Time for {self.region_name} Overlayed " +
-        f"by Predicted DSCI Based on data before Week {self.boundary_week}")
-        pyplot.xlabel("Weeks since January 2nd, 2000")
-        pyplot.ylabel("DSCI")
         pyplot.plot(self.real_dsci_list)
         pyplot.plot(self.pred_dsci_list)
-        pyplot.plot(self.full_pred_dsci_list)
-        pyplot.legend(["Real DSCI Data", "Predicted DSCI from Data Before Cutoff", "Predicted DSCI from All Data"])
         # Creates an infinitely long straight line at x = boundary_week
         pyplot.axline((self.boundary_week, 0), (self.boundary_week, 1), \
         color="black")
