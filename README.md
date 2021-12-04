@@ -21,3 +21,6 @@ Seun and Victor: 12-2-21 (4 hours)
 - Changed most code that used dsci_list into calls to create and use DsciDataset.py
 - Renamed create_county_plot() to create_dsci_list()), make it return the dsci_list, and moved the functionality for actual plotting into main
 - made linear graphs for model
+
+Victor: 12-03-21 (0.5 hours)
+- fixed broken dictionary code
