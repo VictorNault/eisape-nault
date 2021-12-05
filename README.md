@@ -24,3 +24,16 @@ Seun and Victor: 12-2-21 (4 hours)
 
 Victor: 12-03-21 (0.5 hours)
 - fixed broken dictionary code
+
+Victor: 12-04-21 (5 hours)
+- Made the dictionary of all counties map to lists of dscis instead of pandas dataframes
+- Exported the dictionary of all counties to all_counties.json so we didn't need to wait 5 minutes for the program to make said dictionary every time it ran
+- Moved functionality for creating and exporting said dictionary to a separate file
+- Ran said file and then added all_counties.json to the repository
+- Created new instance variables in DsciDataset to record the predicted dscis using an earlier partition of the full dsci list and the total full dsci list, as these are what we are comparing
+- Created a new function in DsciDataset to recalculate the dataset partitions with a new week to divide the full dsci list by
+- Created new functions in DsciDataset to calculate the rss for two arrays and to calculate the sum of differences for two arrays
+- Created a new file to plot the rss and sum of differences between the two new instance variables in DsciDataset, and then color each point by state
+- Used said file to make said plots
+- Added said plots to the repository
+- Felt great pain at trying to get pyplot to do what I wanted
