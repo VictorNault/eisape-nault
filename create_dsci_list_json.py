@@ -42,7 +42,7 @@ def create_dsci_list(county_data_frame):
         # Conversion to int here because the default data type returned by
         # county_data_frame["DSCI"].iloc[i] is "int64", which breaks the dump
         # to json
-        dsci_by_week[reverse_counter - i - 1] = int(county_data_frame["DSCI"].iloc[i])
+        dsci_by_week[i] = int(county_data_frame["DSCI"].iloc[i])
     return dsci_by_week
 
 def save_dict_to_json(input_dict, file_name_str, indent_int):
