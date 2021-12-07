@@ -50,7 +50,7 @@ class DsciDataset:
 
     def create_prediction_plot(self):
         pyplot.title(f"Real DSCI Over Time for {self.region_name} Overlayed " +
-        f"by Predicted DSCI Based on Data before Week {self.boundary_week}")
+        f"by Predicted DSCI Based on Data before Week {self.boundary_week}", fontsize = "small")
         pyplot.xlabel("Weeks since January 2nd, 2000")
         pyplot.ylabel("DSCI")
         pyplot.plot(self.real_dsci_list)
