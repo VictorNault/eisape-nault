@@ -36,4 +36,10 @@ Victor: 12-04-21 (5 hours)
 - Created a new file to plot the rss and sum of differences between the two new instance variables in DsciDataset, and then color each point by state
 - Used said file to make said plots
 - Added said plots to the repository
-- Felt great pain at trying to get pyplot to do what I wanted
+- Felt great pain at trying to get pyplot to do what I wanted4
+
+Victor and Seun: 12-05-21 (4.5 hours)
+- created files to make dictionaries mapping: State-County-DSCI values (all-time) & county-DSCI (2019) & county-median household income (2019)
+- read in median household avgs for counties in 2019  
+- un-reversed data sets that were being read in backwards 
+- some comments for functions
