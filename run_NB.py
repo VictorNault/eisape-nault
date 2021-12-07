@@ -59,6 +59,8 @@ def main():
     then calls a helper function to make a confusion matrix and accuracy for
     the testing data set using the model it just made.
     """
+    avg_trakcer = 0
+    fin_accuracy = 0
     for i in range(0, 20):
         train_partition = read_csv("train_nb_" + str(i) + ".csv")
         test_partition = read_csv("test_nb_" + str(i) + ".csv")
@@ -68,7 +70,9 @@ def main():
         #print(train_partition.K)
         nb_model = NaiveBayes(train_partition)
         print_confusion_matrix(test_partition, nb_model)
-
+        avg_trakcer += print_confusion_matrix(test_partition, nb_model)
+        fin_accuracy = avg_trakcer/20
+    print("Total Accuracy: " + fin_accuracy)
 
 ################################################################################
 # HELPER FUNCTIONS
@@ -86,6 +90,8 @@ def print_confusion_matrix(partition, NaiveBayes):
     true_low_income = 0
     false_not_low_income = 0
     false_low_income = 0
+    avg_trakcer = 0
+    counter = 0
     for i in partition.data:
         if (i.label == 0):
             # Model predicts male, is actually male
@@ -101,7 +107,10 @@ def print_confusion_matrix(partition, NaiveBayes):
             # Model predicts female, is actually female
             if (NaiveBayes.classify(i.features) == 1):
                 true_low_income += 1
+            #avg_trakcer = true_low_income + true_not_low_income
+            #counter+=1
     num_correct_preds = true_not_low_income + true_low_income
+    #print(avg_trakcer/counter)
     print("\n")
     print("\tPrediction")
     print("\tNot Low Income\tLow Income\n")
@@ -110,6 +119,7 @@ def print_confusion_matrix(partition, NaiveBayes):
     # Accuracy = correctly predicted examples / all examples
     print("\nAccuracy:", num_correct_preds / partition.n, " (",
     num_correct_preds, " out of ", partition.n, " correct )")
+    return num_correct_preds/partition.n
 
 def read_csv(filename):
     """
