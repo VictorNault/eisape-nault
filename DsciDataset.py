@@ -45,7 +45,7 @@ class DsciDataset:
 
     def export_prediction_plot(self):
         self.create_prediction_plot()
-        pyplot.savefig()
+        pyplot.savefig(self.region_name + ".pdf", format="pdf")
         pyplot.clf()
 
     def create_prediction_plot(self):
@@ -152,5 +152,17 @@ class DsciDataset:
         """
         return (0.5 * numpy.sum((numpy.subtract(array1, array2))**2))
 
-    def calc_sum_diff(self, array1, array2):
-        return numpy.sum(numpy.subtract(array1, array2))
+    def calc_diff_of_list_avgs(self, list1, list2):
+        counter1 = 0
+        list1_avg = 0
+        for i in list1:
+            list1_avg += i
+            counter1 += 1
+        list1_avg = list1_avg / counter1
+        counter2 = 0
+        list2_avg = 0
+        for i in list2:
+            list2_avg += i
+            counter2 += 1
+        list2_avg = list2_avg / counter2
+        return list1_avg - list2_avg
