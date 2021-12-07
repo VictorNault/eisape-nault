@@ -41,5 +41,5 @@ Victor: 12-04-21 (5 hours)
 Victor and Seun: 12-05-21 (4.5 hours)
 - created files to make dictionaries mapping: State-County-DSCI values (all-time) & county-DSCI (2019) & county-median household income (2019)
 - read in median household avgs for counties in 2019  
-- un-reversed data sets that were being read in backwards 
+- un-reversed data sets that were being read in backwards
 - some comments for functions
