@@ -43,3 +43,19 @@ Victor and Seun: 12-05-21 (4.5 hours)
 - read in median household avgs for counties in 2019  
 - un-reversed data sets that were being read in backwards
 - some comments for functions
+
+Victor and Seun: 12-06-21 (7.5 hours)
+- Discretized our DSCI data into "Above Average DSCI" and "Below Average DSCI", and discretized our median income data to "Low Income" and "Not Low Income" (based on the US legal definition of low income as below $51852 a year for a family of three)
+- Wrote this to a csv file
+- Shuffled and then randomly divided the contents of this csv file into training and testing partitions 20 times
+- Did a Naive Bayes analysis on all of these paired partitions
+- Averaged the resulting accuracy to get a final result of about 55%
+- Fixed broken code for making county-level graphs in DsciDataset
+- Exported two example graphs to demonstrate how we got our linear models
+- Replaced sum of differences graphs with difference between average DSCI graphs
+- Made RSS and difference between averages graphs for models of three-quarters of the original data
+- Made graphs for the average RSS and average difference between averages for entire states
+- Changed the color dictionary for all scatterplot graphs to no longer be random
+- Exported the average cost/RSS of every state to a .json file
+- Discretized this data into cost below 50000, cost between 50000 and 100000, and cost above 100000
+- Manually made a map of the US states and territories colored based on this using GIMP
