@@ -72,7 +72,7 @@ def main():
         print_confusion_matrix(test_partition, nb_model)
         avg_trakcer += print_confusion_matrix(test_partition, nb_model)
         fin_accuracy = avg_trakcer/20
-    print("Total Accuracy: " + fin_accuracy)
+    print("Total Accuracy: " + str(fin_accuracy))
 
 ################################################################################
 # HELPER FUNCTIONS
