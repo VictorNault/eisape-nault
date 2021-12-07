@@ -55,7 +55,7 @@ class DsciDataset:
         pyplot.ylabel("DSCI")
         pyplot.plot(self.real_dsci_list)
         pyplot.plot(self.train_data_pred_dsci_list )
-        pyplot.plot(self.full_pred_dsci_list)
+        pyplot.plot(self.full_data_pred_dsci_list)
         pyplot.legend(["Real DSCI Data", "Predicted DSCI from Data Before Cutoff", "Predicted DSCI from All Data"])
         # Creates an infinitely long straight line at x = boundary_week
         pyplot.axline((self.boundary_week, 0), (self.boundary_week, 1), \
