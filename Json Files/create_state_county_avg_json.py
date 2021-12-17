@@ -43,7 +43,7 @@ def main():
             """
         state_dict_all_for_2019[i] = this_state_dict
     state_dict_avg_for_2019 = calc_state_avg(state_dict_all_for_2019)
-    save_dict_to_json(state_dict_avg_for_2019, "counties_2019.json", 1)
+    save_to_json(state_dict_avg_for_2019, "counties_2019.json", 1)
 
 
 
@@ -85,9 +85,18 @@ def calc_state_avg(dsci_dict_2019):
     return state_to_county_avg_dict
     """
 
-def save_dict_to_json(input_dict, file_name_str, indent_int):
+def save_to_json(input, file_name_str, indent_int):
+    """
+    Creates a Json file containing a single data structure of the type of input.
+    Parameters: input - data structure to be saved to .json
+                file_name_str - name of the new .json file, including the .json
+                extension at the end
+                indent_int - changes how spread out the elements of the data
+                structure are visually in the .json file, must be positive and
+                greater than 0
+    """
     with open(file_name_str, "w") as fp:
-        json.dump(input_dict, fp, indent=indent_int)
+        json.dump(input, fp, indent=indent_int)
 
 if __name__ == "__main__":
     main()
