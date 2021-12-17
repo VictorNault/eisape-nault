@@ -17,7 +17,7 @@ def main():
 
     drought_data_frame = read_in_data()
     all_county_dict = create_all_county_dict(drought_data_frame)
-    save_dict_to_json(all_county_dict, "all_counties.json", 1)
+    save_dict_to_json(all_county_dict, "Json_Files/all_counties.json", 1)
 
 def read_in_data():
     return pandas.read_csv("county_drought_data_2000-2021_dsci.csv", header=0)

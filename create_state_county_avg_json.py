@@ -10,7 +10,7 @@ def main():
     This function
     """
 
-    all_counties_dict = json.load(open("all_counties.json"))
+    all_counties_dict = json.load(open("Json_Files/all_counties.json"))
     all_states_list = []
     for i in all_counties_dict:
         if (all_states_list.count(i[:2]) == 0):
@@ -43,7 +43,8 @@ def main():
             """
         state_dict_all_for_2019[i] = this_state_dict
     state_dict_avg_for_2019 = calc_state_avg(state_dict_all_for_2019)
-    save_dict_to_json(state_dict_avg_for_2019, "counties_2019.json", 1)
+    save_dict_to_json(state_dict_avg_for_2019, \
+    "Json_Files/counties_2019.json", 1)
 
 
 
@@ -51,7 +52,7 @@ def calc_state_avg(dsci_dict_2019):
     """
     This function
     """
-    
+
     output_dict_of_dicts = {}
     for state in dsci_dict_2019:
         counties_dict = {}

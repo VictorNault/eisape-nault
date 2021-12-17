@@ -15,7 +15,7 @@ def main():
 
     unemployment_data_df = read_in_data()
     income_dict = make_income_dict(unemployment_data_df)
-    save_dict_to_json(income_dict, "income_dict.json", 1)
+    save_dict_to_json(income_dict, "Json_Files/income_dict.json", 1)
 
 
 def make_income_dict(input_df):

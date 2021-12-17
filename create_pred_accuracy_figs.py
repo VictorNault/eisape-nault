@@ -81,9 +81,10 @@ def main():
     half_state_avg_rss_list)
     three_quarters_state_avg_rss_dict = create_state_avg_rss_dict( \
     state_names_list, three_quarters_state_avg_rss_list)
-    save_to_json(half_state_avg_rss_dict, "half_state_avg_rss_dict.json", 1)
+    save_to_json(half_state_avg_rss_dict, \
+    "Json_Files/half_state_avg_rss_dict.json", 1)
     save_to_json(three_quarters_state_avg_rss_dict, "three_quarters_state_" + \
-    "avg_rss_dict.json", 1)
+    "Json_Files/avg_rss_dict.json", 1)
 
     export_state_avg_rss_plot(half_state_avg_rss_list, state_names_list, \
     state_color_dict, "figures/state_avg_rss_plot_half_boundary_week.pdf", \

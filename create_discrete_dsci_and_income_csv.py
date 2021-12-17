@@ -23,9 +23,9 @@ def main():
     helper functions to discretize them, then passes the discretized values to
     a helper function to export them.
     """
-    counties_2019 = json.load(open("counties_2019.json"))
+    counties_2019 = json.load(open("Json_Files/counties_2019.json"))
     discrete_dsci_dict = discretize_dsci_dict(counties_2019)
-    med_income_dict = json.load(open("income_dict.json"))
+    med_income_dict = json.load(open("Json_Files/income_dict.json"))
     discrete_med_income_dict = discretize_med_income_dict(med_income_dict)
     create_csv(discrete_dsci_dict, discrete_med_income_dict)
 
@@ -44,8 +44,7 @@ def discretize_dsci_dict(dsci_dict):
     avg_dsci = 0
     county_counter = 0
     for state in dsci_dict:
-        for county in dsci_dict[state]:averaging
-    said median income for each count, then
+        for county in dsci_dict[state]:
             avg_dsci += dsci_dict[state][county]
             county_counter += 1
     avg_dsci = avg_dsci / county_counter

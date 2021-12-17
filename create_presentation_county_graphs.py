@@ -12,7 +12,7 @@ def main():
     """
     This function creates DSCI graphs for the counties of Delaware
     """
-    all_counties_dict = json.load(open("all_counties.json"))
+    all_counties_dict = json.load(open("Json_Files/all_counties.json"))
     for county in all_counties_dict:
         if county[0:2] == "DE":
             DE_county = DsciDataset(all_counties_dict[county], \
