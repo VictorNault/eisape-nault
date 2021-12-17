@@ -1,7 +1,10 @@
 """
-Authors:
-Description:
-Date:
+Authors: Victor Nault and Seun Eisape
+Description: This script takes in a .csv of discretized DSCI and median income
+data per county. It then shuffles the data, splits it in half, and exports both,
+one being the training partition for naive bayes, and one being the testing
+partition. It then does this 20 more times.
+Date: 12/17/21
 """
 
 import csv
@@ -9,7 +12,8 @@ import random
 
 def main():
     """
-    This function
+    This function reads in the .csv file of discretized data, turns them into
+    lists, then shuffles, splits, and exports them 20 times.
     """
 
     input_data = csv.reader(open("NB_Data/naive_bayes.csv", 'r'), delimiter=',')
@@ -20,7 +24,10 @@ def main():
 
 def read_in_csv_to_list(input_data):
     """
-    This function
+    This function reads in a csv file into two separate lists, one with the
+    rows and one with the headers.
+    Parameter:  A csv file that has been opened by csv.reader
+    Returns:    A list of all of the rows, a list of all of the headers
     """
 
     list_of_rows = []
@@ -37,7 +44,14 @@ def read_in_csv_to_list(input_data):
 
 def create_new_partition_csvs(input_list, csv_name1, csv_name2, header_list):
     """
-    This function
+    This function shuffles a given list in place, then divides it in half and
+    creates new .csv files for both halves.
+    Parameters: input_list - A list
+                csv_name1 - A string value to use as the first csv file name.
+                Include .csv file ending
+                csv_name1 - A string value to use as the second csv file name.
+                Include .csv file ending
+                header_list - A list of column headers to use for both csv files
     """
 
     shuffle_in_place(input_list)
@@ -50,7 +64,12 @@ def create_new_partition_csvs(input_list, csv_name1, csv_name2, header_list):
 
 def create_csv(input_list, csv_name, headers):
     """
-    This function
+    This function exports a list of csv rows and a list of csv headers to a new
+    csv file.
+    Parameters: input_list - A list of csv rows
+                csv_name - A string value to use as the name of the file,
+                include .csv file ending
+                headers - A list of strings to use as the column headers
     """
 
     #print(input_list)
@@ -87,8 +106,6 @@ valid input"""
             index_to_swap = random.randrange(0, unswapped_list_length)
         except:
             pass
-
-
 
 if __name__ == "__main__":
     main()
