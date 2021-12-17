@@ -1,7 +1,14 @@
 """
-Authors:
-Description:
-Date:
+Authors: Seun Eisape & Victor Nault
+Description: This file contains the DsciDataset class. Created using a list of
+DSCI per week for a region, a week to divide the list between, and the name of
+the region, it contains class variables for all of these things, as well as
+derived data. It also contains functions that can show a graph of the linear
+prediction for the first part of the data alongside the linear prediction for
+the full data, export this same graph to the figures folder as a .pdf file,
+return the RSS for the two linear predictions, and return the difference
+between the average value of the two linear predictions.
+Date: 12/17/21
 """
 
 import numpy
@@ -15,11 +22,17 @@ class DsciDataset:
         self.region_name = region_name
         self.boundary_week = input_boundary_week
         self.train_dsci_list = self.real_dsci_list[:self.boundary_week]
+        # Below is never actually used in class functions, but could be helpful
+        # for external functions
         self.test_dsci_list = self.real_dsci_list[self.boundary_week:]
-        self.train_data_pred_dsci_list  = self.create_lin_pred_dsci_list(self.train_dsci_list)
-        self.full_data_pred_dsci_list = self.create_lin_pred_dsci_list(self.real_dsci_list)
-        self.train_data_after_boundary = self.train_data_pred_dsci_list[self.boundary_week:]
-        self.full_data_pred_dsci_list_after_boundary_week = self.full_data_pred_dsci_list[self.boundary_week:]
+        self.train_data_pred_dsci_list  = \
+        self.create_lin_pred_dsci_list(self.train_dsci_list)
+        self.full_data_pred_dsci_list = \
+        self.create_lin_pred_dsci_list(self.real_dsci_list)
+        self.train_data_after_boundary = \
+        self.train_data_pred_dsci_list[self.boundary_week:]
+        self.full_data_pred_dsci_list_after_boundary_week = \
+        self.full_data_pred_dsci_list[self.boundary_week:]
 
     def create_lin_pred_dsci_list(self, dsci_list):
         """
@@ -42,55 +55,42 @@ class DsciDataset:
         return predicted_dsci
 
     def show_prediction_plot(self):
+        """
+        Exports the plot of both linear predictions, alongside the actual data,
+        to a .pdf file in the figures folder.
+        """
         self.create_prediction_plot()
         pyplot.show()
         # pyplot.show() automatically clears the graph. No pyplot.clf needed!
 
     def export_prediction_plot(self):
+        """
+        Shows the plot of both linear predictions, alongside the actual data, in
+        a separate window.
+        """
         self.create_prediction_plot()
         pyplot.savefig(self.region_name + ".pdf", format="pdf")
         pyplot.clf()
 
     def create_prediction_plot(self):
+        """
+        Creates a plot of the two linear predictions, one for the first part of
+        the data, one for the full data, with appropriate labels and a legend.
+        """
         pyplot.title(f"Real DSCI Over Time for {self.region_name} Overlayed " +
-        f"by Predicted DSCI Based on Data before Week {self.boundary_week}", fontsize = "small")
+        f"by Predicted DSCI Based on Data before Week {self.boundary_week}", \
+        fontsize = "small")
         pyplot.xlabel("Weeks since January 2nd, 2000")
         pyplot.ylabel("DSCI")
         pyplot.plot(self.real_dsci_list)
         pyplot.plot(self.train_data_pred_dsci_list )
         pyplot.plot(self.full_data_pred_dsci_list)
-        pyplot.legend(["Real DSCI Data", "Predicted DSCI from Data Before Cutoff", "Predicted DSCI from All Data"])
+        pyplot.legend(["Real DSCI Data", \
+        "Predicted DSCI from Data Before Cutoff", \
+        "Predicted DSCI from All Data"])
         # Creates an infinitely long straight line at x = boundary_week
         pyplot.axline((self.boundary_week, 0), (self.boundary_week, 1), \
         color="black")
-
-    # Not how RSS works. Whoops!
-    """
-    def show_rss_plot(self, dsci_list1, dsci_list2, dsci_list1_name_str, dsci_list2_name_str):
-        self.create_rss_plot(dsci_list1, dsci_list2, dsci_list1_name_str, dsci_list2_name_str)
-        pyplot.show()
-        # pyplot.show() automatically clears the graph. No pyplot.clf needed!
-
-    def export_rss_plot(self, dsci_list1, dsci_list2, dsci_list1_name_str, dsci_list2_name_str):
-        self.create_rss_plot(dsci_list1, dsci_list2, dsci_list1_name_str, dsci_list2_name_str)
-        pyplot.savefig()
-        pyplot.clf()
-
-    def create_rss_plot(self, dsci_list1, dsci_list2, dsci_list1_name_str, dsci_list2_name_str):
-        pyplot.title(f"RSS Over Time for {self.region_name} between " +
-        f"{dsci_list1_name_str} and {dsci_list2_name_str}")
-        pyplot.xlabel("Weeks since January 2nd, 2000")
-        pyplot.ylabel(f"RSS between {dsci_list1_name_str} and {dsci_list2_name_str}")
-        pyplot.plot(self.calc_rss(dsci_list1, dsci_list2))
-
-    def repartition(self, new_boundary_week):
-        self.boundary_week = input_boundary_week
-        self.region_name = region_name
-        self.train_dsci_list = self.real_dsci_list[:self.boundary_week]
-        self.test_dsci_list = self.real_dsci_list[self.boundary_week:]
-        self.train_data_pred_dsci_list  = self.create_lin_pred_dsci_list(self.train_dsci_list)
-        self.full_data_pred_dsci_list = self.create_lin_pred_dsci_list(self.real_dsci_list)
-    """
 
     def fit(self, X, y) :
         """
@@ -156,6 +156,17 @@ class DsciDataset:
         return (0.5 * numpy.sum((numpy.subtract(array1, array2))**2))
 
     def calc_diff_of_list_avgs(self, list1, list2):
+        """
+        Finds the average values for two lists consisting of numerical values.
+        Then, returns the difference between the average of the first list and
+        the average of the second list.
+        Parameters: list1 - The first list to be averaged, and the minuend of
+                    the return value
+                    list2 - The second list to be averaged, and the subtrahend
+                    of the return value
+        Returns:    The difference between the average of the first list and
+                    the average of the second list
+        """
         counter1 = 0
         list1_avg = 0
         for i in list1:
