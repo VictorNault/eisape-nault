@@ -1,11 +1,16 @@
 """
-Authors:
-Description:
-Date:
+Authors:        Seun Eisape & Victor Nault
+Description:    This file holds necessary functions to print state cost for
+                their functions
+Date:           12/17/21
 """
 import json
 
 def main():
+    """
+    This funciton prints costs values for functions when looking at three
+    quarters of the data 
+    """
     three_quarters_state_avg_rss_dict = \
     json.load(open("Json_Files/three_quarters_state_avg_rss_dict.json"))
     for state in three_quarters_state_avg_rss_dict:

@@ -25,7 +25,7 @@ Seun and Victor: 12-2-21 (4 hours)
 Victor: 12-03-21 (0.5 hours)
 - fixed broken dictionary code
 
-Victor: 12-04-21 (5 hours)
+Victor and Seun: 12-04-21 (5 hours)
 - Made the dictionary of all counties map to lists of dscis instead of pandas dataframes
 - Exported the dictionary of all counties to all_counties.json so we didn't need to wait 5 minutes for the program to make said dictionary every time it ran
 - Moved functionality for creating and exporting said dictionary to a separate file
@@ -59,6 +59,14 @@ Victor and Seun: 12-06-21 (7.5 hours)
 - Exported the average cost/RSS of every state to a .json file
 - Discretized this data into cost below 50000, cost between 50000 and 100000, and cost above 100000
 - Manually made a map of the US states and territories colored based on this using GIMP
+
+Seun 12/16/21 (.5 hours)
+- Updated Comments
+
+Victor and Seun: (12-17/21)
+- Updated comments for all code
+- cleaned repository 
+
 
 References:
 1. https://droughtmonitor.unl.edu/DmData/DataDownload/DSCI.aspx
