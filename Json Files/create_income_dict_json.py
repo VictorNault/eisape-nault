@@ -1,13 +1,26 @@
+"""
+Authors:        Seun Eisape & Victor Nault
+Description:
+Date:
+"""
 import pandas
 import json
 
 def main():
+    """
+    This function
+    """
+
     unemployment_data_df = read_in_data()
     income_dict = make_income_dict(unemployment_data_df)
     save_dict_to_json(income_dict, "income_dict.json", 1)
 
 
 def make_income_dict(input_df):
+    """
+    This function
+    """
+
     unemployment_info = input_df[["Area_name", "Attribute", "Value"]]
     #print(unemployment_info)
     income_dict = {}
@@ -39,6 +52,10 @@ def make_income_dict(input_df):
     #county_to_unemployment = {}
 
 def save_dict_to_json(input_dict, file_name_str, indent_int):
+    """
+    This function
+    """
+    
     with open(file_name_str, "w") as fp:
         json.dump(input_dict, fp, indent=indent_int)
 

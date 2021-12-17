@@ -1,10 +1,18 @@
-# hello
+"""
+Author:
+Description:
+Date:
+"""
 
 import csv
 import pandas
 import json
 
 def main():
+    """
+    This function
+    """
+
     drought_data_frame = read_in_data()
     all_county_dict = create_all_county_dict(drought_data_frame)
     save_dict_to_json(all_county_dict, "all_counties.json", 1)
@@ -36,6 +44,10 @@ def create_all_county_dict(input_df):
     return all_county_dict
 
 def create_dsci_list(county_data_frame):
+    """
+    This function
+    """
+
     dsci_by_week = len(county_data_frame) * [0]
     reverse_counter = len(county_data_frame)
     for i in range(len((county_data_frame))):
@@ -46,6 +58,10 @@ def create_dsci_list(county_data_frame):
     return dsci_by_week
 
 def save_dict_to_json(input_dict, file_name_str, indent_int):
+    """
+    This function
+    """
+    
     with open(file_name_str, "w") as fp:
         json.dump(input_dict, fp, indent=indent_int)
 

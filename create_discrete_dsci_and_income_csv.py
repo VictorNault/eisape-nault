@@ -1,8 +1,15 @@
-# kello
+"""
+Authors:        Seun Eisape & Victor Nault
+Description:    This file
+Date:
+"""
 import json
 import csv
 
 def main():
+    """
+    This function
+    """
     counties_2019 = json.load(open("counties_2019.json"))
     discrete_dsci_dict = discretize_dsci_dict(counties_2019)
     #print(discrete_dsci_dict)
@@ -12,6 +19,10 @@ def main():
     create_csv(discrete_dsci_dict, discrete_med_income_dict)
 
 def discretize_dsci_dict(dsci_dict):
+    """
+    This function
+    """
+
     avg_dsci = 0
     county_counter = 0
     for state in dsci_dict:
@@ -33,6 +44,10 @@ def discretize_dsci_dict(dsci_dict):
     return discrete_dsci_dict
 
 def discretize_med_income_dict(med_income_dict):
+    """
+    This function
+    """
+
     low_income_cutoff = 51852
     discrete_med_income_dict = {}
     for county in med_income_dict:
@@ -43,6 +58,10 @@ def discretize_med_income_dict(med_income_dict):
     return discrete_med_income_dict
 
 def create_csv(dsci_dict, med_income_dict):
+    """
+    This function
+    """
+    
     with open("naive_bayes.csv", "w", newline="") as naive_bayes_csv:
         headers = ["DSCI", "Income"]
         writer = csv.writer(naive_bayes_csv)

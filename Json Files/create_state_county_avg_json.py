@@ -1,6 +1,15 @@
+"""
+Authors:
+Description:
+Date:
+"""
 import json
 
 def main():
+    """
+    This function
+    """
+
     all_counties_dict = json.load(open("all_counties.json"))
     all_states_list = []
     for i in all_counties_dict:
@@ -39,6 +48,10 @@ def main():
 
 
 def calc_state_avg(dsci_dict_2019):
+    """
+    This function
+    """
+    
     output_dict_of_dicts = {}
     for state in dsci_dict_2019:
         counties_dict = {}

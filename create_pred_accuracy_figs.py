@@ -1,9 +1,18 @@
+"""
+Authors:        Seun Eisape & Victor Nault
+Description:
+Date:
+"""
+
 import json
 from DsciDataset import *
 import matplotlib.pyplot as pyplot
 from random import random
 
 def main():
+    """
+    This function
+    """
     all_counties_dict = json.load(open("all_counties.json"))
     state_list = []
     rss_list_half_boundary_week = []
@@ -43,6 +52,10 @@ def main():
     export_state_avg_rss_plot(three_quarters_state_avg_rss_list, state_names_list, state_color_dict, "figures/state_avg_rss_plot_three_quarters_boundary_week.pdf", "Statewide Average RSS between DSCI Models for all Counties with 3/4 Training Data")
 
 def create_state_avg_rss_dict(state_names_list, state_avg_rss_list):
+    """
+    This function
+    """
+
     output_dict = {}
     for i in range(len(state_names_list)):
         output_dict[state_names_list[i]] = state_avg_rss_list[i]
@@ -50,6 +63,10 @@ def create_state_avg_rss_dict(state_names_list, state_avg_rss_list):
 
 
 def export_state_avg_rss_plot(state_avg_rss_list, state_names_list, state_color_dict, export_name, title):
+    """
+    This function
+    """
+
     pyplot.xlim(-1, 58)
     leg_objects = []
     for i in state_color_dict:
@@ -64,6 +81,10 @@ def export_state_avg_rss_plot(state_avg_rss_list, state_names_list, state_color_
     pyplot.clf()
 
 def create_state_avg_rss_list(rss_list, state_list, state_names_list):
+    """
+    This function
+    """
+
     num_counties = len(rss_list)
     state_avg_rss_list = []
     for state in state_names_list:
@@ -78,10 +99,18 @@ def create_state_avg_rss_list(rss_list, state_list, state_names_list):
     return state_avg_rss_list
 
 def save_to_json(input, file_name_str, indent_int):
+    """
+    This function
+    """
+
     with open(file_name_str, "w") as fp:
         json.dump(input, fp, indent=indent_int)
 
 def export_rss_plot(rss_list, state_names_list, state_color_dict, color_list, export_name, title):
+    """
+    This function
+    """
+
     pyplot.xlim(-100, 3600)
     leg_objects = []
     for i in state_color_dict:
@@ -95,6 +124,10 @@ def export_rss_plot(rss_list, state_names_list, state_color_dict, color_list, ex
     pyplot.clf()
 
 def export_avg_diff_plot(avg_diff_list, state_names_list, state_color_dict, color_list, export_name, title):
+    """
+    This function
+    """
+
     pyplot.xlim(-100, 3600)
     leg_objects = []
     for i in state_color_dict:
@@ -108,6 +141,10 @@ def export_avg_diff_plot(avg_diff_list, state_names_list, state_color_dict, colo
     pyplot.clf()
 
 def create_state_color_dict(state_list):
+    """
+    This function
+    """
+
     state_color_dict = {}
     counter = 0
     for i in state_list:
@@ -132,12 +169,20 @@ def create_state_color_dict(state_list):
     return state_color_dict
 
 def create_color_list(state_list, state_color_dict):
+    """
+    This function
+    """
+
     color_list = []
     for i in state_list:
         color_list.append(state_color_dict[i])
     return color_list
 
 def create_legend(names, color_dict):
+    """
+    This function
+    """
+    
     leg_objects = []
     for i in color_dict:
         circle, = pyplot.plot([], 'o', c=color_dict[i])

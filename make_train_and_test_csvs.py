@@ -1,9 +1,17 @@
-# iello
+"""
+Authors:
+Description:
+Date:
+"""
 
 import csv
 import random
 
 def main():
+    """
+    This function
+    """
+
     input_data = csv.reader(open("naive_bayes.csv", 'r'), delimiter=',')
     list_of_rows, header_list = read_in_csv_to_list(input_data)
     for i in range(0, 20):
@@ -11,6 +19,10 @@ def main():
         "test_nb_" + str(i) + ".csv", header_list)
 
 def read_in_csv_to_list(input_data):
+    """
+    This function
+    """
+
     list_of_rows = []
     passed_first_row = False
     header_list = None
@@ -24,6 +36,10 @@ def read_in_csv_to_list(input_data):
 
 
 def create_new_partition_csvs(input_list, csv_name1, csv_name2, header_list):
+    """
+    This function
+    """
+
     shuffle_in_place(input_list)
     #print(list_of_rows)
     list_midpoint = int(len(input_list) / 2)
@@ -33,6 +49,10 @@ def create_new_partition_csvs(input_list, csv_name1, csv_name2, header_list):
     create_csv(list2, csv_name2, header_list)
 
 def create_csv(input_list, csv_name, headers):
+    """
+    This function
+    """
+
     #print(input_list)
     with open(csv_name, "w", newline="") as new_csv:
         writer = csv.writer(new_csv)
