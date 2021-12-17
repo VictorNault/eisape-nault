@@ -18,7 +18,7 @@ class DsciDataset:
         self.test_dsci_list = self.real_dsci_list[self.boundary_week:]
         self.train_data_pred_dsci_list  = self.create_lin_pred_dsci_list(self.train_dsci_list)
         self.full_data_pred_dsci_list = self.create_lin_pred_dsci_list(self.real_dsci_list)
-        self.train_data_pred_dsci_list_after_boundary_week = self.train_data_pred_dsci_list[self.boundary_week:]
+        self.train_data_after_boundary = self.train_data_pred_dsci_list[self.boundary_week:]
         self.full_data_pred_dsci_list_after_boundary_week = self.full_data_pred_dsci_list[self.boundary_week:]
 
     def create_lin_pred_dsci_list(self, dsci_list):
