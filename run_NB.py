@@ -1,16 +1,17 @@
 """
-CS260 Lab 4: This script reads in the data from two csv files - one for
-training, another for testing, that have column headers, with one of the
-headers being 'sex' and the only values in the column being 'Male' and
-'Female'. It converts this data into two 'Partition' classes - one for the
-training data and another for the testing data. It then uses the training data
-to train a Naive Bayes algorithm, which attempts to map the likelyhoods of
-a row having a given sex feature value given its other feature values. Finally
-it uses the algorithm it just trained to classify the test data, checks the
-predicted values to the actual values, and prints out the corresponding
-confusion matrix and accuracy.
-Author: Victor Nault
-Date: 10/21/21
+CS260 Lab 4: This script reads in the data from 40 csv files - 20 for
+training, 20 for testing, that have column headers, with one of the
+headers being 'Median Income' and the only values in the column being
+'Low Income' and 'Not Low Income'. It converts this data into two 'Partition'
+classes - one for the training data and another for the testing data. It then
+uses the training data to train a Naive Bayes algorithm, which attempts to map
+the likelyhoods of a row having a given income feature value given its other
+feature value, DSCI. Finally it uses the algorithm it just trained to classify
+the test data, checks the predicted values to the actual values, and prints out
+the corresponding confusion matrix and accuracy. Finally it averages all of
+the accuracies.
+Author: Victor Nault and Seun Eisape
+Date: 12/17/21
 """
 
 from NaiveBayes import NaiveBayes
@@ -61,10 +62,6 @@ def main():
     for i in range(0, 20):
         train_partition = read_csv("NB_Data/train_nb_" + str(i) + ".csv")
         test_partition = read_csv("NB_Data/test_nb_" + str(i) + ".csv")
-        #print(train_partition.data)
-        #print(train_partition.n)
-        #print(train_partition.F)
-        #print(train_partition.K)
         nb_model = NaiveBayes(train_partition)
         print_confusion_matrix(test_partition, nb_model)
         avg_tracker += print_confusion_matrix(test_partition, nb_model)
@@ -91,23 +88,20 @@ def print_confusion_matrix(partition, NaiveBayes):
     counter = 0
     for i in partition.data:
         if (i.label == 0):
-            # Model predicts male, is actually male
+            # Model predicts low_income, is actually low_income
             if (NaiveBayes.classify(i.features) == 0):
                 true_not_low_income += 1
-            # Model predicts female, is actually male
+            # Model predicts not low_income, is actually low_income
             if (NaiveBayes.classify(i.features) == 1):
                 false_low_income += 1
         if (i.label == 1):
-            # Model predicts male, is actually female
+            # Model predicts low_income, is actually not low_income
             if (NaiveBayes.classify(i.features) == 0):
                 false_not_low_income += 1
-            # Model predicts female, is actually female
+            # Model predicts not low_income, is actually not low_income
             if (NaiveBayes.classify(i.features) == 1):
                 true_low_income += 1
-            #avg_tracker = true_low_income + true_not_low_income
-            #counter+=1
     num_correct_preds = true_not_low_income + true_low_income
-    #print(avg_tracker/counter)
     print("\n")
     print("\tPrediction")
     print("\tNot Low Income\tLow Income\n")
