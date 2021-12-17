@@ -40,12 +40,12 @@ Victor: 12-04-21 (5 hours)
 
 Victor and Seun: 12-05-21 (4.5 hours)
 - created files to make dictionaries mapping: State-County-DSCI values (all-time) & county-DSCI (2019) & county-median household income (2019)
-- read in median household avgs for counties in 2019  
+- read in median household avgs for counties in 2019
 - un-reversed data sets that were being read in backwards
 - some comments for functions
 
 Victor and Seun: 12-06-21 (7.5 hours)
-- Discretized our DSCI data into "Above Average DSCI" and "Below Average DSCI", and discretized our median income data to "Low Income" and "Not Low Income" (based on the US legal definition of low income as below $51852 a year for a family of three)
+- Discretized our DSCI data into "Above Average DSCI" and "Below Average DSCI", and discretized our median income data to "Low Income" and "Not Low Income" (based on the National Center for Children in Poverty definition of low income as below $51852 a year for a family of three)
 - Wrote this to a csv file
 - Shuffled and then randomly divided the contents of this csv file into training and testing partitions 20 times
 - Did a Naive Bayes analysis on all of these paired partitions
@@ -59,3 +59,11 @@ Victor and Seun: 12-06-21 (7.5 hours)
 - Exported the average cost/RSS of every state to a .json file
 - Discretized this data into cost below 50000, cost between 50000 and 100000, and cost above 100000
 - Manually made a map of the US states and territories colored based on this using GIMP
+
+References:
+1. https://droughtmonitor.unl.edu/DmData/DataDownload/DSCI.aspx
+To download the dataset from here, set start date to 01/01/2000 and end date to 11/17/2021, set spatial scale to County (by State), then select all, and set output format to .csv
+2. https://www.ers.usda.gov/data-products/county-level-data-sets/download-data/
+This dataset is small enough to be included in the github repository, but to download it, click the .csv icon next to "Unemployment and median household income for the U.S., States, and counties, 2000-20".
+3. https://www.nccp.org/demographic/
+Source for our definition of low income.
