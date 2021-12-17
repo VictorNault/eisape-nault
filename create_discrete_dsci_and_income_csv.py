@@ -94,7 +94,7 @@ def create_csv(dsci_dict, med_income_dict):
                 med_income_dict - A dictionary with counties as keys and median
                 income (single numerical value) as values.
     """
-    with open("naive_bayes.csv", "w", newline="") as naive_bayes_csv:
+    with open("NB_Data/naive_bayes.csv", "w", newline="") as naive_bayes_csv:
         headers = ["DSCI", "Income"]
         writer = csv.writer(naive_bayes_csv)
         writer.writerow(headers)

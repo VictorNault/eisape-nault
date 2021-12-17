@@ -63,7 +63,7 @@ def save_dict_to_json(input_dict, file_name_str, indent_int):
         json.dump(input_dict, fp, indent=indent_int)
 
 def read_in_data():
-    return pandas.read_csv("Unemployment.csv", header=0)
+    return pandas.read_csv("starting_csv_data/Unemployment.csv", header=0)
 
 if __name__ == "__main__":
     main()

@@ -12,11 +12,11 @@ def main():
     This function
     """
 
-    input_data = csv.reader(open("naive_bayes.csv", 'r'), delimiter=',')
+    input_data = csv.reader(open("NB_Data/naive_bayes.csv", 'r'), delimiter=',')
     list_of_rows, header_list = read_in_csv_to_list(input_data)
     for i in range(0, 20):
-        create_new_partition_csvs(list_of_rows, "train_nb_" + str(i) + ".csv", \
-        "test_nb_" + str(i) + ".csv", header_list)
+        create_new_partition_csvs(list_of_rows, "NB_Data/train_nb_" + str(i) \
+        + ".csv", "NB_Data/test_nb_" + str(i) + ".csv", header_list)
 
 def read_in_csv_to_list(input_data):
     """

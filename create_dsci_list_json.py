@@ -20,7 +20,8 @@ def main():
     save_dict_to_json(all_county_dict, "Json_Files/all_counties.json", 1)
 
 def read_in_data():
-    return pandas.read_csv("county_drought_data_2000-2021_dsci.csv", header=0)
+    return pandas.read_csv( \ 
+    "starting_csv_data/county_drought_data_2000-2021_dsci.csv", header=0)
 
 def create_all_county_dict(input_df):
     """

@@ -13,9 +13,6 @@ Author: Victor Nault
 Date: 10/21/21
 """
 
-# Below is the command to run the script from the console
-# python3 run_NB.py -r data/1994_census_cleaned_train.csv -e data/1994_census_cleaned_test.csv
-
 from NaiveBayes import NaiveBayes
 import optparse
 import sys
@@ -59,19 +56,19 @@ def main():
     then calls a helper function to make a confusion matrix and accuracy for
     the testing data set using the model it just made.
     """
-    avg_trakcer = 0
+    avg_tracker = 0
     fin_accuracy = 0
     for i in range(0, 20):
-        train_partition = read_csv("train_nb_" + str(i) + ".csv")
-        test_partition = read_csv("test_nb_" + str(i) + ".csv")
+        train_partition = read_csv("NB_Data/train_nb_" + str(i) + ".csv")
+        test_partition = read_csv("NB_Data/test_nb_" + str(i) + ".csv")
         #print(train_partition.data)
         #print(train_partition.n)
         #print(train_partition.F)
         #print(train_partition.K)
         nb_model = NaiveBayes(train_partition)
         print_confusion_matrix(test_partition, nb_model)
-        avg_trakcer += print_confusion_matrix(test_partition, nb_model)
-        fin_accuracy = avg_trakcer/20
+        avg_tracker += print_confusion_matrix(test_partition, nb_model)
+        fin_accuracy = avg_tracker/20
     print("Total Accuracy: " + str(fin_accuracy))
 
 ################################################################################
@@ -90,7 +87,7 @@ def print_confusion_matrix(partition, NaiveBayes):
     true_low_income = 0
     false_not_low_income = 0
     false_low_income = 0
-    avg_trakcer = 0
+    avg_tracker = 0
     counter = 0
     for i in partition.data:
         if (i.label == 0):
@@ -107,10 +104,10 @@ def print_confusion_matrix(partition, NaiveBayes):
             # Model predicts female, is actually female
             if (NaiveBayes.classify(i.features) == 1):
                 true_low_income += 1
-            #avg_trakcer = true_low_income + true_not_low_income
+            #avg_tracker = true_low_income + true_not_low_income
             #counter+=1
     num_correct_preds = true_not_low_income + true_low_income
-    #print(avg_trakcer/counter)
+    #print(avg_tracker/counter)
     print("\n")
     print("\tPrediction")
     print("\tNot Low Income\tLow Income\n")
