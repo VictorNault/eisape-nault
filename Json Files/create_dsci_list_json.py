@@ -15,7 +15,7 @@ def main():
 
     drought_data_frame = read_in_data()
     all_county_dict = create_all_county_dict(drought_data_frame)
-    save_dict_to_json(all_county_dict, "all_counties.json", 1)
+    save_to_json(all_county_dict, "all_counties.json", 1)
 
 def read_in_data():
     return pandas.read_csv("county_drought_data_2000-2021_dsci.csv", header=0)
@@ -57,13 +57,18 @@ def create_dsci_list(county_data_frame):
         dsci_by_week[i] = int(county_data_frame["DSCI"].iloc[i])
     return dsci_by_week
 
-def save_dict_to_json(input_dict, file_name_str, indent_int):
+def save_to_json(input, file_name_str, indent_int):
     """
-    This function
+    Creates a Json file containing a single data structure of the type of input.
+    Parameters: input - data structure to be saved to .json
+                file_name_str - name of the new .json file, including the .json
+                extension at the end
+                indent_int - changes how spread out the elements of the data
+                structure are visually in the .json file, must be positive and
+                greater than 0
     """
-    
     with open(file_name_str, "w") as fp:
-        json.dump(input_dict, fp, indent=indent_int)
+        json.dump(input, fp, indent=indent_int)
 
 
 if __name__ == "__main__":
