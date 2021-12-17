@@ -13,7 +13,7 @@ def main():
 
     unemployment_data_df = read_in_data()
     income_dict = make_income_dict(unemployment_data_df)
-    save_dict_to_json(income_dict, "income_dict.json", 1)
+    save_to_json(income_dict, "income_dict.json", 1)
 
 
 def make_income_dict(input_df):
@@ -51,13 +51,18 @@ def make_income_dict(input_df):
     #print(counties)
     #county_to_unemployment = {}
 
-def save_dict_to_json(input_dict, file_name_str, indent_int):
+def save_to_json(input, file_name_str, indent_int):
     """
-    This function
+    Creates a Json file containing a single data structure of the type of input.
+    Parameters: input - data structure to be saved to .json
+                file_name_str - name of the new .json file, including the .json
+                extension at the end
+                indent_int - changes how spread out the elements of the data
+                structure are visually in the .json file, must be positive and
+                greater than 0
     """
-    
     with open(file_name_str, "w") as fp:
-        json.dump(input_dict, fp, indent=indent_int)
+        json.dump(input, fp, indent=indent_int)
 
 def read_in_data():
     return pandas.read_csv("Unemployment.csv", header=0)
